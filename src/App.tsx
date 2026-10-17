@@ -204,7 +204,23 @@ function App() {
 
   useEffect(() => {
     document.documentElement.lang = language === "en" ? "en" : "pt-BR";
-    document.title = language === "en" ? "Francisco Bressa — Full Stack Developer" : "Francisco Bressa — Desenvolvedor Full Stack";
+    const title = language === "en"
+      ? "Francisco Bressa | Senior Full Stack Developer"
+      : "Francisco Bressa | Desenvolvedor Full Stack Sênior";
+    const description = language === "en"
+      ? "Francisco Bressa is a Brazilian senior full stack developer specializing in React, TypeScript, frontend engineering, and scalable web applications."
+      : "Francisco Bressa é desenvolvedor full stack sênior brasileiro, especialista em React, TypeScript, engenharia frontend e aplicações web escaláveis.";
+    document.title = title;
+    const descriptionTag = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (descriptionTag) descriptionTag.content = description;
+    const ogTitleTag = document.querySelector<HTMLMetaElement>('meta[property="og:title"]');
+    if (ogTitleTag) ogTitleTag.content = title;
+    const ogDescriptionTag = document.querySelector<HTMLMetaElement>('meta[property="og:description"]');
+    if (ogDescriptionTag) ogDescriptionTag.content = description;
+    const twitterTitleTag = document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]');
+    if (twitterTitleTag) twitterTitleTag.content = title;
+    const twitterDescriptionTag = document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]');
+    if (twitterDescriptionTag) twitterDescriptionTag.content = description;
   }, [language]);
 
   return (
